@@ -1,29 +1,59 @@
-const getComputerChoice = () => {
-  let words = ["rock", "paper", "scissors"];
-  let rand = Math.floor(Math.random() * words.length);
-  return words[rand];
-};
+console.log("Rock Paper Scissors Game");
 
-console.log(getComputerChoice())
-
-const playRound = (playerSelection, computerSelection) => {
-    let result;
-    let computerScore;
-    let playerScore;
-    let playerSelection = playerSelection.toLowerCase();
-
-    if(playerSelection === computerSelection){
-        result = "It's a draw!!";
-    } else if(playerSelection === 'rock' && computerSelection === 'scissors'){
-        result = "You Win! Rock breaks Scissors!";
-        playerScore += 1;
-    } else if(playerSelection === 'rock' && computerSelection === 'paper'){
-        result = "You lose! Paper covers rock!";
-        computerScore += 1;
-    } else if (playerSelection === 'paper' && computerSelection === 'rock'){
-        result = "You Win! Paper covers Rock!";
-        playerScore += 1;
-    } else if (playerSelection === 'paper' && computerSelection === 'scissors'){
-        result = "You Win! Paper cuts Scissors"
-    }
+// Function to get the computer's choice
+function getComputerChoice() {
+  const choices = ["rock", "paper", "scissors"];
+  const randomIndex = Math.floor(Math.random() * choices.length);
+  return choices[randomIndex];
 }
+
+// Function to determine the winner of a single round
+function playRound(playerSelection, computerSelection) {
+  playerSelection = playerSelection.toLowerCase();
+
+  if (playerSelection === computerSelection) {
+    return "It's a tie!";
+  } else if (
+    (playerSelection === "rock" && computerSelection === "scissors") ||
+    (playerSelection === "scissors" && computerSelection === "paper") ||
+    (playerSelection === "paper" && computerSelection === "rock")
+  ) {
+    return `You win! ${playerSelection} beats ${computerSelection}.`;
+  } else {
+    return `You lose! ${computerSelection} beats ${playerSelection}.`;
+  }
+}
+
+// Function to play a 5-round game
+function game() {
+  let playerScore = 0;
+  let computerScore = 0;
+
+  for (let i = 0; i < 5; i++) {
+    const playerChoice = prompt(
+      "Enter your choice (rock, paper, or scissors):"
+    );
+    const computerChoice = getComputerChoice();
+    const result = playRound(playerChoice, computerChoice);
+
+    if (result.includes("win")) {
+      playerScore++;
+    } else if (result.includes("lose")) {
+      computerScore++;
+    }
+
+    console.log(result);
+  }
+
+  // Determine the overall winner
+  if (playerScore > computerScore) {
+    console.log("Congratulations! You win the game!");
+  } else if (playerScore < computerScore) {
+    console.log("Sorry, you lose. Better luck next time!");
+  } else {
+    console.log("It's a tie! Play again to break the tie.");
+  }
+}
+
+// Start the game
+game();
