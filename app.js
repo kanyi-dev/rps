@@ -1,14 +1,14 @@
 console.log("Rock Paper Scissors Game");
 
 // Function to get the computer's choice
-function getComputerChoice() {
+const getComputerChoice = () => {
   const choices = ["rock", "paper", "scissors"];
   const randomIndex = Math.floor(Math.random() * choices.length);
   return choices[randomIndex];
-}
+};
 
 // Function to determine the winner of a single round
-function playRound(playerSelection, computerSelection) {
+const playRound = (playerSelection, computerSelection) => {
   playerSelection = playerSelection.toLowerCase();
 
   if (playerSelection === computerSelection) {
@@ -22,10 +22,10 @@ function playRound(playerSelection, computerSelection) {
   } else {
     return `You lose! ${computerSelection} beats ${playerSelection}.`;
   }
-}
+};
 
 // Function to play a 5-round game
-function game() {
+const game = () => {
   let playerScore = 0;
   let computerScore = 0;
 
@@ -53,7 +53,7 @@ function game() {
   } else {
     console.log("It's a tie! Play again to break the tie.");
   }
-}
+};
 
 // Start the game
 game();
