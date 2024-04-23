@@ -55,7 +55,9 @@ const playRound = (playerSelection, computerSelection) => {
 //   }
 // };
 
+const button = document.querySelector("button");
 
+button.addEventListener('click', playRound(playerSelection));
 
 // Start the game
 game();
