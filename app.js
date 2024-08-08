@@ -8,15 +8,19 @@ const getComputerChoice = () => {
     return "Scissors";
   }
 };
-console.log(getComputerChoice())
+console.log(getComputerChoice());
 
 const getHumanChoice = (userInput) => {
-userInput = prompt("Make your Choice: ");
-if (userInput === 'rock' || userInput === 'paper' || userInput === 'scissors') {
-  return userInput;
-} else {
-  return "Error! The input is not valid."
-}
+  userInput = prompt("Make your Choice: ");
+  if (
+    userInput === "rock" ||
+    userInput === "paper" ||
+    userInput === "scissors"
+  ) {
+    return userInput;
+  } else {
+    return "Error! The input is not valid.";
+  }
 };
 
-console.log(getHumanChoice())
+console.log(getHumanChoice());
