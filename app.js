@@ -1,26 +1,59 @@
+console.log("Rock, Paper, Scissors Game");
+
+//Function to get the computer's choice
 const getComputerChoice = () => {
-  let choice = Math.floor(Math.random() * 3);
-  if (choice === 0) {
-    return "Rock";
-  } else if (choice === 1) {
-    return "Paper";
-  } else if (choice === 2) {
-    return "Scissors";
-  }
-};
-console.log(getComputerChoice());
+  const choices = ["rock", "paper", "scissors"];
+  const randomIndex = Math.floor(Math.random() * choices.length);
+  return choices[randomIndex];
+  };
 
-const getHumanChoice = (userInput) => {
-  userInput = prompt("Make your Choice: ");
-  if (
-    userInput === "rock" ||
-    userInput === "paper" ||
-    userInput === "scissors"
-  ) {
-    return userInput;
+  //Function to determine the winner of a single round
+const playRound = (playerSelection, computerSelection) => {
+  playerSelection = playerSelection.toLowerCase();
+
+  if(playerSelection === computerSelection){
+    return "It's a tie!";
+  } else if (
+    (playerSelection === "rock" && computerSelection === "scissors") || 
+    (playerSelection === "scissors" && computerSelection === "paper") ||
+    (playerSelection === "paper" && computerSelection === "rock")
+  ){
+    return `You win!${playerSelection} beats ${computerSelection}.`;
   } else {
-    return "Error! The input is not valid.";
+    return `You lose! ${computerSelection} beats ${playerSelection}`;
   }
 };
 
-console.log(getHumanChoice());
+//Function to play a 5-round game
+const game = () => {
+  let playerScore = 0;
+  let computerScore = 0;
+
+for (let i = 0; i < 5; i++) {
+  const playerChoice = prompt(
+    "Enter your choice (rock, paper or scissors): "
+  );
+  const ComputerChoice = getComputerChoice();
+  const result = playRound(playerChoice, ComputerChoice);
+
+  if (result.includes("win")) {
+    playerScore++;
+  } else if (result.includes("lose")) {
+    computerScore++;
+  }
+
+  console.log(result);
+  }
+  
+  //Determine the overall Winner
+  if (playerScore > computerScore) {
+    console.log("Congratulations! You win the game!");
+  } else if (playerScore < computerScore){
+    console.log("Sorry, you lose. Better luck next time!")
+  } else {
+    console.log("It's a tie! Play again to break the tie.");
+  }
+};
+
+// Start the Game
+game();
